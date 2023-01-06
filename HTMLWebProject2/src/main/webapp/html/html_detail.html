@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="table.css">
+<!-- 
+	<ul>: 메뉴(웹 템플릿 => 메뉴(ul))
+	 |
+	<li>
+	
+	<ul>
+	  <li>값</li>
+	</ul>
+	
+	<ol>: 파일 다운로드 목록이 많은 경우 
+	 |
+	<li>
+	
+	<table>: 가장 많이 사용되는 리스트 형식
+	   |
+	 <tr>
+	   |
+	 ------
+	 |    |
+	 <td> <th>
+	 
+	 <dl>
+	  |
+	 <dt> 데이터
+	 <dd> 데이터에 대한 설명
+	 
+	 <select>
+	    |
+	 <option> 
+ -->
+  <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+  <script type="text/javascript">
+  let i=0;
+    $(function(){
+    	$('#delBtn').click(function() {
+			if(i==0)
+			{
+				$('#del').show();
+				i=1;
+			}
+			else
+			{
+				$('#del').hide();
+				i=0;
+			}
+		})
+    })
+  </script>
+</head>
+<body>
+  <center>
+    <h1>내용보기</h1>
+    <table id="table_content" width="650">
+      <tr>
+        <th width=20%>번호</th>
+        <td width=30% align="center">1</td>
+        <th width=20%>작성일</th>
+        <td width=30% align="center">2022-12-27</td>
+      </tr>
+      <tr>
+        <th width=20%>이름</th>
+        <td width=30% align="center">홍길동</td>
+        <th width=20%>조회수</th>
+        <td width=30% align="center">10</td>
+      </tr>
+      <tr>
+        <th width=20%>제목</th>
+        <td colspan="3">토트넘 역사 바뀔 뻔..."이적 99% 완료됐었다" 고백</td>
+      </tr>
+      <tr>
+        <td colspan="4" align="left" valign="top" height="200">
+        토트넘이 조세 무리뉴 감독을 갑작스럽게 경질했던 2021년 4월. 토트넘은 새로운 사령탑을 찾기 위해서 여러 인물과 접촉했지만 성과는 없었다. 율리안 나겔스만. 에릭 텐 하흐 감독은 토트넘행을 거부했다.
+
+토트넘은 라이언 메이슨 임시 감독 체제로 시즌을 이상하게 마무리한 뒤 파울로 폰세카 감독과 접촉했다. 폰세카 감독의 부임은 유력해보였다. 계약 기간과 이적시장 방향성에 대해서 이미 합의를 마쳤다는 구체적인 보도가 나왔지만 갑작스럽게 방향이 틀어졌다.
+        </td>
+      </tr>
+      <tr>
+        <td colspan="4" align="right">
+          <input type=button value="답변">
+          <input type=button value="수정">
+          <input type=button value="삭제" id="delBtn">
+          <input type=button value="목록">
+        </td>
+      </tr>
+      <tr style="display: none" id="del">
+        <td colspan="4" align="right">
+        비밀번호:<input type=password size=15>
+        </td>
+      </tr>
+    </table>
+  </center>
+</body>
+</html>
