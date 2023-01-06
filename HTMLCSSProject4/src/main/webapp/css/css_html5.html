@@ -1,0 +1,36 @@
+<!-- 
+	구조 선택자
+	:first-child
+	:last-child
+	:nth-child(n)
+	:nth-last-child(n)
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+/*ul, table,ol,dl*/
+h1:first-child {
+	color: blue;
+}
+h1:last-child {
+	color: pink;
+}
+h1:nth-child(2n) {
+	color: green;
+}
+h1:nth-child(2n+1) {
+	background-color: yellow;
+}
+</style>
+</head>
+<body>
+  <h1>홍길동1</h1> <!-- first-child -->
+  <h1>홍길동2</h1>
+  <h1>홍길동3</h1>
+  <h1>홍길동4</h1>
+  <h1>홍길동5</h1> <!-- last-child -->
+</body>
+</html>
