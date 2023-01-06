@@ -1,0 +1,145 @@
+<!-- 
+	CSS: HTML에 대한 디자인
+		 장점) HTML을 만들고 나중에 디자인을 처리할 수 있다
+		 종류)
+		 	1) 인라인 CSS
+		 		=> 한개의 태그만 변경
+		 			<p style=""> : 모든 HTML 태그는 style속성을 가지고 있다
+		 	2) 내부 CSS
+		 		=> HTML, JSP 파일 전체를 제어
+		 			<head>
+		 				<style>
+		 					CSS
+		 				</style>
+		 			</head>
+		 	3) 외부 CSS
+		 		=> 파일을 생성해서 전체 프로젝트에 공통으로 적용하는 CSS
+		 			<head>
+		 				<link rel="stylesheet" href="경로명 / 외부에서 원격">
+		 			</head>
+	CSS: 이미 지정된 속성에 값을 변경해서 사용(사용자 정의가 존재하지 않는다)
+		 CSS/HTML 응용을 하지 않는다
+		 	 ---- 태그의 속성은 사용자 정의가 가능하다 => JavaScript 연결(Ajax,VueJS,ReactJS)
+		 1) HTML에 CSS를 적용
+		 	=> 태그 선택자: 자바스크립트, 크롤링, CSS(디자인)
+		 2) 태그 선택자
+		 	=> 태그명: 같은 이름의 태그가 많이 존재할 수도 있다
+		 	=> ID 속성: 중복이 없는 아이디명을 가지고 있다(한개씩 제어)
+		 	=> CLASS 속성: 중복이 있는 클래스명을 가지고 있다(여러개 태그를 동시에 제어)
+		 	=> HTML의 모든 태그는 공통으로 적용되는 속성
+		 		id, class, name, style
+		 		---		   ----
+		 		 |			 |
+		 		 -------------
+		 		 	구분자 => 태그를 찾는 경우에 주로 사용
+		 		 	id, class => CSS/JavaScript(Front)
+		 		 	name 	  => Java에서 입력값을 가지고 오는 경우
+		 3) 선택자 사용 방법
+		 	=> 태그명
+		 	   태그명 {
+		 	   			CSS에서 지정하는 속성:값;
+		 	   }
+		 	   <style>
+		 	   		주석 처리는 /* */
+		 	   </style>
+		 	   
+		 	   예)
+		 	      <p>Hello CSS!</p>
+		 	      <style>
+		 	        p{
+		 	        -- 태그명
+		 	        	color(글자색상):red, 16진법 => #FF0000, rgb(255,0,0)
+		 	        	font-size: 10px;
+		 	        }
+		 	      </style>
+		 	 => id가 있는 경우
+		 	 	<p>Hello CSS!!</p>
+		 	 	<p id="aaa">Hello CSS!!</p> ==> 적용
+		 	 	<p>Hello CSS!!</p>
+		 	 	
+		 	 	<style>
+		 	 		#aaa {
+		 	 			color:blue;
+		 	 		}
+		 	 	</style>
+		 	 	
+		 	 	<script>
+		 	 		JQuery => VueJS, ReactJS => 선택자 => 유효성 검사 => NOT NULL
+		 	 	
+		 	 		$('#aaa').click(function()) {
+		 	 		})
+		 	 	</script>
+		 	 => class가 있는 경우: 태그를 동시에 제어
+		 	 	<p>Hello CSS!!</p>
+		 	 	<p id="aaa">Hello CSS!!</p> ==> 같은 형식으로 제어(색상을 green)
+		 	 	<p>Hello CSS!!</p>
+		 	 	<p>Hello CSS!!</p> ==> 같은 형식으로 제어(색상을 green)
+		 	 	<p id="bbb">Hello CSS!!</p>
+		 	 	
+		 	 	=> <style>
+		 	 			#aaa{
+		 	 			}
+		 	 			#bbb{
+		 	 			}
+		 	 		  ==> 혼합
+		 	 		    #aaa,#bbb{
+		 	 		    }
+		 	 		</style>
+		 	 		*** HTML 단점: 같은 이름의 id를 가지고 있어도 에러가 없다 
+		 	 			----에러 시 (오라클, HTML, CSS)
+		 	 			---- id가 중복이 되면 (HTML,CSS에서는 오류가 없다 -> 자바스크립트에서는 처리가 안된다)
+				class일 경우
+		 	 	  <p>Hello CSS!!</p>
+		 	 	  <p class="aaa">Hello CSS!!</p> ==> 같은 형식으로 제어(색상을 green)
+		 	 	  <p>Hello CSS!!</p>
+		 	 	  <p>Hello CSS!!</p> ==> 같은 형식으로 제어(색상을 green)
+		 	 	  <p class="aaa">Hello CSS!!</p>
+		 	 	 <style>
+		 	 	 	.aaa{
+		 	 	 		CSS속성 정의
+		 	 	 	}
+		 	 	 	p.aaa{
+		 	 	 	
+		 	 	 	}
+		 	 	 	.class명
+		 	 	 	태그명.클래스명{
+		 	 	 	
+		 	 	 	}
+		 	 	 	크롤링 => 상위태그 태그명.클래스명...
+		 	 	 			상위태그.클래스명 상위태그 태그명.클래스명
+		 	 	 </style>
+		 	 	 
+		 	 	 img[src*=/recipe/] => 속성선택자, 가상선택자
+		 	 	 => 속성은 어떤게 있는지 확인
+		 	   		
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<!--  -->
+<style type="text/css">
+/*
+	내부 CSS
+*/
+img{
+	width: 200px;
+	height: 250px;
+}
+ul{
+	color: blue;
+	list-style-type: square;
+}
+</style>
+</head>
+<body>
+  <img src="https://img.cgv.co.kr/Movie/Thumbnail/Poster/000086/86072/86072_320.jpg">
+  <h1>아바타-물의 길</h1>
+  <ul>
+    <li>예매율 72.4%</li>
+    <li>2022.12.14 개봉</li>
+    <li>제임스 카메론</li>
+  </ul>
+</body>
+</html>
