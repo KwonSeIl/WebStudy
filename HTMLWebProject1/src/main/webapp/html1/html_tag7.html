@@ -1,0 +1,94 @@
+<!-- 
+	rowspan: 세로 묶기
+	colspan: 가로 묶기
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+  <h1>Colspan: 가로로 묶을 경우 사용</h1>
+  <table border=1 width=500>
+    <tr height="30">
+      <td colspan="2"></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr height="30">
+      <td></td>
+      <td colspan="2"></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr height="30">
+      <td></td>
+      <td></td>
+      <td></td>
+      <td colspan="2"></td>
+    </tr>
+    <tr height="30">
+      <td colspan="3"></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr height="30">
+      <td colspan="5"></td>
+    </tr>
+  </table>
+  <p>
+  <h1>Rowspan: 세로로 묶을 경우 사용</h1>
+  <!-- 속성값을 줄 때 "" 사용이 기본
+  		단 생략할 수도 있다
+  		반드시 "" 사용하는 부분: 공백이 있을 경우
+  		<input type=text value=Hello Java> ==> 출력:Hello
+  		<input type=text value="Hello Java">
+   -->
+  <table width=750> <!-- 태그(자바:클래스), 속성(자바:멤버변수) -->
+    <tr height="30">
+      <td width=30% rowspan="6"><img src="https://movie-phinf.pstatic.net/20221215_185/1671091761840XXpCR_JPEG/movie_image.jpg?type=m203_290_2"
+      style="border:1px solid red;"></td>
+      <td colspan=2><h3>아바타: 물의 길</h3></td>
+    </tr>
+    <tr height="30">
+      <td width=10% style="color:#999">장르</td>
+      <td width=60%>액션, 모험, SF, 스릴러</td>
+    </tr>
+    <tr height="30">
+      <td width=10% style="color:#999">감독</td>
+      <td width=60%>제임스 카메론</td>
+    </tr>
+    <tr height="30">
+      <td width=10% style="color:#999">출연</td>
+      <td width=60%>조 샐다나(네이티리), 샘 워싱턴(제이크 설리), 시고니 위버</td>
+    </tr>
+    <tr height="30">
+      <td width=10% style="color:#999">등급</td>
+      <td width=60%>12세 관람가</td>
+    </tr>
+    <tr height="30">
+      <td width=10% style="color:#999">흥행</td>
+      <td width=60%>누적관객누적관객 5,576,806명</td>
+    </tr>
+    <tr>
+      <td colspan="3" align="left" valign="top">
+      <pre>&lt;아바타: 물의 길&gt;은 판도라 행성에서
+ 제이크 설리'와 '네이티리'가 이룬 가족이 겪게 되는 무자비한 위협과
+ 살아남기 위해 떠나야 하는 긴 여정과 전투,
+ 그리고 견뎌내야 할 상처에 대한 이야기를 그렸다.
+ 
+ 월드와이드 역대 흥행 순위 1위를 기록한 전편 <아바타>에 이어
+ 제임스 카메론 감독이 13년만에 선보이는 영화로,
+ 샘 워싱턴, 조 샐다나, 시고니 위버, 스티븐 랭, 케이트 윈슬렛이 출연하고
+ 존 랜도가 프로듀싱을 맡았다.</pre>
+      </td>
+    </tr>
+  </table>
+  <p>
+  <h1>속성값에 반드시 ""가 출력하는 부분</h1>
+  <!-- <input type=text value=Hello Java><br>
+  <input type=text value="Hello Java"><br> -->
+</body>
+</html>
