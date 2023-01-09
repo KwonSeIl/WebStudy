@@ -19,6 +19,18 @@ h1{
    text-align: center
 }
 </style>
+<%--
+	파일명?
+	-----
+	<form action="파일명">
+				  ----
+	$.ajax({
+		url:'a.jsp'
+			------
+	})
+	
+	axios.get('URL')
+ --%>
 </head>
 <body>
   <div class="container">
