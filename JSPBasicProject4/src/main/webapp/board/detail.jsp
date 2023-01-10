@@ -48,12 +48,14 @@ h1{
           <td colspan="3"><%=vo.getSubject() %></td>
         </tr>
         <tr>
-          <td colspan="4" valign="top" height="200"><pre style="white-space:pre-wrap;background-color: white;border: none"><%=vo.getContent() %></td>
+          <td colspan="4" valign="top" height="200"><pre style="white-space:pre-wrap;background-color: white;border: none"><%=vo.getContent() %></pre></td>
         </tr>
         <tr>
           <td colspan="4" class="text-right">
             <a href="update.jsp?no=<%=no %>" class="btn btn-xs btn-success">수정</a>
-            <a href="#" class="btn btn-xs btn-info">삭제</a>
+            <%--no번호를 수정해달라 --%>
+            <a href="delete.jsp?no=<%=no %>" class="btn btn-xs btn-info">삭제</a>
+            <%--no번호를 삭제해달라 --%>
             <a href="list.jsp" class="btn btn-xs btn-warning">목록</a>
           </td>
         </tr>
