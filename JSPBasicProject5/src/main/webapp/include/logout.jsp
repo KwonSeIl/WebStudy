@@ -8,17 +8,17 @@
 </head>
 <body>
   <form method="post" action="logout_ok.jsp">
-  <table class="table">
+   <table class="table">
     <tr>
-      <td width="30%" class="text-right"></td>
-      <td width="70%">
-        <%=session.getAttribute("name") %>님 로그인 되었습니다
+      <td width=30% class="text-right"></td>
+      <td width=70%>
+       <span style="font-size: 9px"><%= session.getAttribute("name") %> 님 로그인되었습니다</span>
       </td>
     </tr>
     <tr>
-      <td width="30%" class="text-right"></td>
-      <td width="70%">
-        메일:1개 &nbsp; 쪽지:3개
+      <td width=30% class="text-right"></td>
+      <td width=70%>
+       메일:1개 &nbsp; 쪽지:3개
       </td>
     </tr>
     <tr>
@@ -27,6 +27,6 @@
       </td>
     </tr>
   </table>
- </form>
+  </form>
 </body>
 </html>
