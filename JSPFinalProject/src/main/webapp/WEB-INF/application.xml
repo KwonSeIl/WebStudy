@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans>
+  <!--  메뉴판: 미등록이면 Controller가 찾을 수 없다(스프링)  -->
+  <bean class="com.sist.model.MainModel"/>
+  <bean class="com.sist.model.FoodModel"/>
+  <bean class="com.sist.model.SeoulModel"/>
+  <bean class="com.sist.model.GoodsModel"/>
+</beans>
