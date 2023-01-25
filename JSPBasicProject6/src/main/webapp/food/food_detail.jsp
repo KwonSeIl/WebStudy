@@ -108,7 +108,7 @@
     <div class= "col-sm-5">
        <div id="map" style="width:100%;height:350px;"></div>
 
-      <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ae12aff8e45e62ef0437d634b152c8df&libraries=services"></script>
+      
       <script>
       var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
           mapOption = {
@@ -123,7 +123,7 @@
       var geocoder = new kakao.maps.services.Geocoder();
       
       // 주소로 좌표를 검색합니다
-      geocoder.addressSearch('<%=addr1%>', function(result, status) {
+      geocoder.addressSearch('${addr1}', function(result, status) {
       
           // 정상적으로 검색이 완료됐으면 
            if (status === kakao.maps.services.Status.OK) {
@@ -138,7 +138,7 @@
       
               // 인포윈도우로 장소에 대한 설명을 표시합니다
               var infowindow = new kakao.maps.InfoWindow({
-                  content: '<div style="width:150px;text-align:center;padding:6px 0;"><%=vo.getName()%></div>'
+                  content: '<div style="width:150px;text-align:center;padding:6px 0;">${vo.name}</div>'
               });
               infowindow.open(map, marker);
       
@@ -147,6 +147,7 @@
           } 
       });    
       </script>
+
     </div>
    </div>
 </body>

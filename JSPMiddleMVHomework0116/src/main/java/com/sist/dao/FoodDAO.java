@@ -9,19 +9,19 @@ public class FoodDAO {
 	private Connection conn;
 	private PreparedStatement ps;
 	
-	//POOL ¾È¿¡¼­ Connection ÁÖ¼Ò¸¦ ¾ò¾î¿Â´Ù
+	//POOL ï¿½È¿ï¿½ï¿½ï¿½ Connection ï¿½Ö¼Ò¸ï¿½ ï¿½ï¿½ï¿½Â´ï¿½
 	public void getConnection()
 	{
 		try
 		{
 			Context init=new InitialContext();
 			Context c=(Context)init.lookup("java://comp/env");
-			DataSource ds=(DataSource)c.lookup("jdbc/oracle"); //ÀÌ¸§À¸·Î °´Ã¼Ã£±â
+			DataSource ds=(DataSource)c.lookup("jdbc/oracle"); //ï¿½Ì¸ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼Ã£ï¿½ï¿½
 			conn=ds.getConnection();
 		}catch(Exception ex) {}
 	}
 	
-	//Connection »ç¿ëÀÌ Á¾·á -> ¹ÝÈ¯
+	//Connection 
 	public void disConnection()
 	{
 		try
@@ -30,7 +30,7 @@ public class FoodDAO {
 			if(conn!=null) conn.close();
 		}catch(Exception ex) {}
 	}
-	//±â´É	
+	
 	public FoodVO foodDetailData(int fno)
 	{
 		   FoodVO vo=new FoodVO();
@@ -92,7 +92,7 @@ public class FoodDAO {
 	      }
 	      finally
 	      {
-	         disConnection(); //´Ý±âx ¹ÝÈ¯o(Àç»ç¿ëÀ» À§ÇÔ) ==> Connection °´Ã¼ »ý¼ºÀ» Á¶Àý
+	         disConnection(); 
 	      }
 	      return list;
 	   }

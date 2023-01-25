@@ -110,7 +110,7 @@ public class DispatcherServlet extends HttpServlet {
 						//request 전송 => forward
 						if(jsp.startsWith("redirect:")) // _ok.jsp => Controller 직접 처리
 						{
-							response.sendRedirect(jsp.substring(jsp.indexOf(":"))+1);
+							response.sendRedirect(jsp.substring(jsp.indexOf(":")+1));
 						}
 						else
 						{

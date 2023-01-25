@@ -1,9 +1,34 @@
 package com.sist.vo;
 
 public class FoodVO {
-	private int fno;
+	private int fno,cno,good,soso,bad;
 	private double score;
 	private String poster,name,address,tel,type,price,parking,menu,time;
+	
+	public int getCno() {
+		return cno;
+	}
+	public void setCno(int cno) {
+		this.cno = cno;
+	}
+	public int getGood() {
+		return good;
+	}
+	public void setGood(int good) {
+		this.good = good;
+	}
+	public int getSoso() {
+		return soso;
+	}
+	public void setSoso(int soso) {
+		this.soso = soso;
+	}
+	public int getBad() {
+		return bad;
+	}
+	public void setBad(int bad) {
+		this.bad = bad;
+	}
 	public int getFno() {
 		return fno;
 	}
