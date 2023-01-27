@@ -9,14 +9,14 @@ public class FoodDAO {
 	private Connection conn;
 	private PreparedStatement ps;
 	
-	//POOL �ȿ��� Connection �ּҸ� ���´�
+
 	public void getConnection()
 	{
 		try
 		{
 			Context init=new InitialContext();
 			Context c=(Context)init.lookup("java://comp/env");
-			DataSource ds=(DataSource)c.lookup("jdbc/oracle"); //�̸����� ��üã��
+			DataSource ds=(DataSource)c.lookup("jdbc/oracle"); 
 			conn=ds.getConnection();
 		}catch(Exception ex) {}
 	}
