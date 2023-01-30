@@ -13,6 +13,8 @@ import com.sist.dao.*;
 import com.sist.vo.*;
 @Controller
 public class MainModel {
+	// 모든 .do 에서 실행할 수 있게 만듦
+	
 	@RequestMapping("main/main.do")
 	public String main_page(HttpServletRequest request,HttpServletResponse response)
 	{
@@ -21,7 +23,9 @@ public class MainModel {
 		session.setAttribute("admin", "y");*/
 		FoodDAO dao=new FoodDAO();
 		ArrayList<CategoryVO> list=dao.foodCategoryData();
-		request.setAttribute("list", list);
+		request.setAttribute("list", list); //home.jsp
+		
+		CommonsModel.footerData(request); //Spring => AOP
 		//include할 파일명을 전송
 		request.setAttribute("main_jsp", "../main/home.jsp"); //main.jsp
 		return "../main/main.jsp";
