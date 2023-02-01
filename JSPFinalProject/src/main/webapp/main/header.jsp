@@ -152,20 +152,20 @@ $(function(){
       </li>
       <li><a class="drop" href="#">커뮤니티</a>
         <ul>
-          <li><a href="pages/gallery.html">공지사항</a></li>
+          <li><a href="../notice/list.do">공지사항</a></li>
          
          <li><a href="../freeboard/list.do">자유게시판</a></li>
          <c:if test="${sessionScope.id!=null }">
-          <li><a href="pages/sidebar-left.html">후기게시판</a></li>
+          <li><a href="pages/sidebar-left.html">묻고답하기</a></li>
          </c:if>
         </ul>
       </li>
       <c:if test="${sessionScope.id!=null }">
         <c:if test="${sessionScope.admin=='n' }">
-         <li><a href="#">마이페이지</a></li>
+         <li><a href="../mypage/mypage_main.do">마이페이지</a></li>
         </c:if>
         <c:if test="${sessionScope.admin=='y' }">
-         <li><a href="#">관리자페이지</a></li>
+         <li><a href="../adminpage/admin_main.do">관리자페이지</a></li>
         </c:if>
       </c:if>
     </ul>

@@ -45,53 +45,57 @@
         </article>
       </li>
     </ul>
+     <!-- ################################################################################################ -->
     <h2 class="sectiontitle">믿고보는 맛집 리스트</h2>
+    <!-- ################################################################################################ -->
     <div class="flexslider carousel basiccarousel btmspace-80">
       <ul class="slides">
-      <c:forEach var="vo" items="${list }" varStatus="s">
-        <c:if test="${s.index>=0 && s.index<12}">
-        <li>
-          <figure><a href="../food/food_list.do?cno=${vo.cno }"><img class="radius-10 btmspace-10" src="${vo.poster }" title="${vo.subject }"></a>
-            <figcaption><a href="../food/food_list.do?cno=${vo.cno }">${vo.title }</a></figcaption>
-          </figure>
-        </li>
-       </c:if> 
-      </c:forEach>      
+       <c:forEach var="vo" items="${list }" varStatus="s"><%-- list의  index번호 --%>
+        <c:if test="${s.index>=0 && s.index<12 }">
+	        <li>
+	          <figure><img class="radius-10 btmspace-10" src="${vo.poster }" title="${vo.subject }">
+	            <figcaption><a href="../food/food_list.do?cno=${vo.cno }">${vo.title }</a></figcaption>
+	          </figure>
+	        </li>
+        </c:if>
+       </c:forEach>
       </ul>
     </div>
     <h2 class="sectiontitle">지역별 인기 맛집</h2>
+    <!-- ################################################################################################ -->
     <div class="flexslider carousel basiccarousel btmspace-80">
       <ul class="slides">
-        <c:forEach var="vo" items="${list }" varStatus="s">
-        <c:if test="${s.index>=12 && s.index<18}">
-        <li>
-          <figure><a href="../food/food_list.do?cno=${vo.cno }"><img class="radius-10 btmspace-10" src="${vo.poster }" title="${vo.subject }"></a>
-            <figcaption><a href="../food/food_list.do?cno=${vo.cno }">${vo.title }</a></figcaption>
-          </figure>
-        </li>
-       </c:if> 
-      </c:forEach>    
-           
+        <c:forEach var="vo" items="${list }" varStatus="s"><%-- list의  index번호 --%>
+        <c:if test="${s.index>=12 && s.index<18 }">
+	        <li>
+	          <figure><img class="radius-10 btmspace-10" src="${vo.poster }" title="${vo.subject }">
+	            <figcaption><a href="../food/food_list.do?cno=${vo.cno }">${vo.title }</a></figcaption>
+	          </figure>
+	        </li>
+        </c:if>
+       </c:forEach>
       </ul>
     </div>
     <h2 class="sectiontitle">메뉴별 인기 맛집</h2>
+    <!-- ################################################################################################ -->
     <div class="flexslider carousel basiccarousel btmspace-80">
       <ul class="slides">
-        <c:forEach var="vo" items="${list }" varStatus="s">
-        <c:if test="${s.index>=18 && s.index<30}">
-        <li>
-          <figure><a href="../food/food_list.do?cno=${vo.cno }"><img class="radius-10 btmspace-10" src="${vo.poster }" title="${vo.subject }"></a>
-            <figcaption><a href="../food/food_list.do?cno=${vo.cno }">${vo.title }</a></figcaption>
-          </figure>
-        </li>
-       </c:if> 
-      </c:forEach>   
+        <c:forEach var="vo" items="${list }" varStatus="s"><%-- list의  index번호 --%>
+        <c:if test="${s.index>=18 && s.index<30 }">
+	        <li>
+	          <figure><img class="radius-10 btmspace-10" src="${vo.poster }" title="${vo.subject }">
+	            <figcaption><a href="../food/food_list.do?cno=${vo.cno }">${vo.title }</a></figcaption>
+	          </figure>
+	        </li>
+        </c:if>
+       </c:forEach>
       </ul>
     </div>
-    
-    
+    <!-- ################################################################################################ -->
     <h2 class="sectiontitle">최근 방문 맛집</h2>
-    
+    <!-- ################################################################################################ -->
+      
+    <!-- ################################################################################################ --> 
     <!-- / main body -->
     <div class="clear"></div>
   </main>

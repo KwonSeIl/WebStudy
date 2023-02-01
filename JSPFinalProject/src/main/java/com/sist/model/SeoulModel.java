@@ -1,13 +1,17 @@
 package com.sist.model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.sist.controller.Controller;
 import com.sist.controller.RequestMapping;
+import com.sist.dao.AllReplyDAO;
 import com.sist.dao.SeoulDAO;
+import com.sist.vo.AllReplyVO;
+import com.sist.vo.FoodVO;
 import com.sist.vo.SeoulVO;
 
 @Controller
@@ -50,6 +54,45 @@ public class SeoulModel {
 		
 		
 		request.setAttribute("main_jsp", "../seoul/seoul_list.jsp");
+		CommonsModel.footerData(request);
+		return "../main/main.jsp";
+	}
+	@RequestMapping("seoul/seoul_detail.do")
+	public String seoul_detail(HttpServletRequest request,HttpServletResponse response)
+	{
+		// 요청값 
+		String no=request.getParameter("no");
+		//데이터베이스 연동
+		SeoulDAO dao=new SeoulDAO();
+		SeoulVO vo=dao.seoulDetailData(Integer.parseInt(no));
+		//결과값 전송
+		/*
+		 * 	04084 서울 마포구 양화진길 46 (합정동, 양화진홍보관)
+		 */
+		request.setAttribute("vo", vo);
+		request.setAttribute("main_jsp", "../seoul/seoul_detail.jsp");
+		/*String address=vo.getAddress();
+		String addr1=address.substring(address.indexOf(" ")+1);
+		addr1=addr1.trim();
+		String addr2=addr1.substring(addr1.indexOf(" ")+1);
+		addr2=addr2.trim();
+		String addr3=addr2.substring(0,addr2.indexOf(" "));
+		System.out.println(addr3);*/
+		String address=vo.getAddress();
+		String[] addr=address.split(" ");
+		/*for(String s:addr)
+		{
+			System.out.println(s);
+		}*/
+		request.setAttribute("addr", addr[2]+" 맛집");
+		List<FoodVO> list=dao.seoulFoodFindData(addr[2]);
+		request.setAttribute("list", list);
+		CommonsModel.footerData(request);
+		
+		AllReplyDAO adao=new AllReplyDAO();
+		List<AllReplyVO> rList=adao.allReplyListData(Integer.parseInt(no), 1);
+		request.setAttribute("rList", rList);
+		request.setAttribute("count", rList.size());
 		CommonsModel.footerData(request);
 		return "../main/main.jsp";
 	}

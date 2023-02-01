@@ -155,19 +155,19 @@ public class FoodDAO {
 	}
 	public CategoryVO categoryInfoData(int cno)
 	{
-	      CategoryVO vo=new CategoryVO();
-	      try
-	      {
-	         conn=CreateConnection.getConnection();
-	         String sql="SELECT title,subject FROM project_category "
-	               +"WHERE cno=?";
-	         ps=conn.prepareStatement(sql);
-	         ps.setInt(1, cno);
-	         ResultSet rs=ps.executeQuery();
-	         rs.next();
-	         vo.setTitle(rs.getString(1));
-	         vo.setSubject(rs.getString(2));
-	         rs.close();
+		CategoryVO vo=new CategoryVO();
+		   try
+		   {
+			   conn=CreateConnection.getConnection();
+			   String sql="SELECT title,subject FROM project_category "
+					     +"WHERE cno=?";
+			   ps=conn.prepareStatement(sql);
+			   ps.setInt(1, cno);
+			   ResultSet rs=ps.executeQuery();
+			   rs.next();
+			   vo.setTitle(rs.getString(1));
+			   vo.setSubject(rs.getString(2));
+			   rs.close();
 	      }catch(Exception ex)
 	      {
 	         ex.printStackTrace();
@@ -229,5 +229,37 @@ public class FoodDAO {
 			//DAO, VO, Model(스프링: ~Controller, 스트럿츠: ~Action)
 		}
 		return vo;
+	}
+	//관련 레시피 출력
+	public List<RecipeVO> food_recipe_data(String type)
+	{
+		List<RecipeVO> list=new ArrayList<RecipeVO>();
+		try
+		{
+			conn=CreateConnection.getConnection();
+			String sql="SELECT title,poster,chef,rownum "
+					+"FROM recipe "
+					+ "WHERE REGEXP_LIKE(title,?) AND rownum<=5";
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, type);
+			ResultSet rs=ps.executeQuery();
+			while(rs.next())
+			{
+				RecipeVO vo=new RecipeVO();
+				vo.setTitle(rs.getString(1));
+				vo.setPoster(rs.getString(2));
+				vo.setChef(rs.getString(3));
+				list.add(vo);
+			}
+			rs.close();
+		}catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
+		finally
+		{
+			CreateConnection.disConnection(conn, ps);
+		}
+		return list;
 	}
 }

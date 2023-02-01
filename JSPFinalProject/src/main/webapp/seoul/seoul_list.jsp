@@ -36,7 +36,7 @@
           </header>
           <ul class="nospace clear">
             <c:forEach var="vo" items="${list }" varStatus="s">
-              <li class="one_quarter ${s.index%4==0?'first':'' }"><a href="#"><img src="${vo.poster }" title="${vo.title }"></a></li>
+              <li class="one_quarter ${s.index%4==0?'first':'' }"><a href="../seoul/seoul_detail.do?no=${vo.no }"><img src="${vo.poster }" title="${vo.title }"></a></li>
             </c:forEach>
           </ul>
           <figcaption></figcaption>

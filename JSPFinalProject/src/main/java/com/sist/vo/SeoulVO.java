@@ -7,7 +7,7 @@ package com.sist.vo;
 	ADDRESS NOT NULL VARCHAR2(300) 
 	HIT             NUMBER        
  */
-// JSP => µ¥ÀÌÅÍ¸¦ ¸ð¾Æ¼­ ºê¶ó¿ìÀú¿¡ ÇÑ ¹ø¿¡ Àü¼Û ¸ñÀû ==> ~Bean
+// JSP => ë°ì´í„° ëª¨ì•„ í•œë²ˆì— ë¸Œë¼ìš°ì €ì— ì „ì†¡ ==> ~Bean
 public class SeoulVO {
 	private int no,hit;
 	private String title,poster,msg,address;
