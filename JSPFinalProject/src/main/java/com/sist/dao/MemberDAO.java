@@ -248,8 +248,223 @@ REGDATE          DATE
 		}
 		return vo;
 	}
-	//3. 회원수정
+	/*
+	 * 	ID      NOT NULL VARCHAR2(20) 
+		PWD     NOT NULL VARCHAR2(10) 
+		NAME    NOT NULL VARCHAR2(34) 
+		SEX              VARCHAR2(6)  
+		BIRTHDAY NOT NULL VARCHAR2(15) 
+		EMAIL            VARCHAR2(50) 
+		POST    NOT NULL VARCHAR2(7)  
+		ADDR1   NOT NULL VARCHAR2(200) 
+		ADDR2            VARCHAR2(200) 
+		PHONE   NOT NULL VARCHAR2(20) 
+		CONTENT          CLOB         
+		ADMIN            CHAR(1)      
+		REGDATE          DATE  
+	 */
+	//3. 회원수정 데이터 가져오기
+	public MemberVO memberJoinUpdateData(String id)
+	{
+		MemberVO vo=new MemberVO();
+		try
+		{
+			conn=CreateConnection.getConnection();
+			String sql="SELECT id,name,sex,birthday,email,post,addr1,addr2,phone,content "
+					+"FROM project_member "
+					+"WHERE id=?";
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, id);
+			ResultSet rs=ps.executeQuery();
+			rs.next();
+			vo.setId(rs.getString(1));
+			vo.setName(rs.getString(2));
+			vo.setSex(rs.getString(3));
+			vo.setBirthday(rs.getString(4));
+			vo.setEmail(rs.getString(5));
+			vo.setPost(rs.getString(6));
+			vo.setAddr1(rs.getString(7));
+			vo.setAddr2(rs.getString(8));
+			vo.setPhone(rs.getString(9));
+			vo.setContent(rs.getString(10));
+			rs.close();
+		}catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
+		finally
+		{
+			CreateConnection.disConnection(conn, ps);
+		}
+		return vo;
+	}
+	
+	//회원수정
+	public boolean memberJoinUpdate(MemberVO vo)
+	{
+		boolean bCheck=false;
+		try
+		{
+			conn=CreateConnection.getConnection();
+			String sql="SELECT pwd FROM project_member "
+					+"WHERE id=?";
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, vo.getId());
+			ResultSet rs=ps.executeQuery();
+			rs.next();
+			String db_pwd=rs.getString(1);
+			rs.close();
+			
+			if(db_pwd.equals(vo.getPwd()))
+			{
+				bCheck=true;
+				sql="UPDATE project_member SET "
+						+"name=?,sex=?,email=?,phone=?,content=?,birthday=?,"
+						+"post=?,addr1=?,addr2=? "
+						+"WHERE id=?";
+				ps=conn.prepareStatement(sql);
+				ps.setString(1, vo.getName());
+				ps.setString(2, vo.getSex());
+				ps.setString(3, vo.getEmail());
+				ps.setString(4, vo.getPhone());
+				ps.setString(5, vo.getContent());
+				ps.setString(6, vo.getBirthday());
+				ps.setString(7, vo.getPost());
+				ps.setString(8, vo.getAddr1());
+				ps.setString(9, vo.getAddr2());
+				ps.setString(10, vo.getId());
+				
+				ps.executeUpdate();
+			}
+		}catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
+		finally
+		{
+			CreateConnection.disConnection(conn, ps);
+		}
+		return bCheck;
+	}
 	//4. ID 찾기
+	public String memberIdfind(String tel)
+	{
+		String result="";
+		try
+		{
+			conn=CreateConnection.getConnection();
+			 String sql="SELECT COUNT(*) FROM project_member "
+		               +"WHERE phone=?";
+		         ps=conn.prepareStatement(sql);
+		         ps.setString(1, tel);
+		         ResultSet rs=ps.executeQuery();
+		         rs.next();
+		         int count=rs.getInt(1);
+		         rs.close();
+
+			
+			if(count==0)
+			{
+				result="NO";
+			}
+			else
+			{
+				sql="SELECT RPAD(SUBSTR(id,1,1),LENGTH(id),'*') FROM project_member "
+			               +"WHERE phone=?";
+			            ps=conn.prepareStatement(sql);
+			            ps.setString(1, tel);
+			            rs=ps.executeQuery();
+			            rs.next();
+			            result=rs.getString(1);
+			            rs.close();
+
+			}
+		}catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
+		finally
+		{
+			CreateConnection.disConnection(conn, ps);
+		}
+		return result;
+	}
+	public String memberIdfind2(String email)
+	{
+		String result="";
+		try
+		{
+			conn=CreateConnection.getConnection();
+			 String sql="SELECT COUNT(*) FROM project_member "
+		               +"WHERE email=?";
+		         ps=conn.prepareStatement(sql);
+		         ps.setString(1, email);
+		         ResultSet rs=ps.executeQuery();
+		         rs.next();
+		         int count=rs.getInt(1);
+		         rs.close();
+
+			
+			if(count==0)
+			{
+				result="NO";
+			}
+			else
+			{
+				sql="SELECT RPAD(SUBSTR(id,1,1),LENGTH(id),'*') FROM project_member "
+			               +"WHERE email=?";
+			            ps=conn.prepareStatement(sql);
+			            ps.setString(1, email);
+			            rs=ps.executeQuery();
+			            rs.next();
+			            result=rs.getString(1);
+			            rs.close();
+
+			}
+		}catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
+		finally
+		{
+			CreateConnection.disConnection(conn, ps);
+		}
+		return result;
+	}
 	//5. PWD 찾기
 	//6. 회원탈퇴
+	public boolean memberJoinDelete(String id,String pwd)
+	{
+		boolean bCheck=false;
+		try
+		{
+			conn=CreateConnection.getConnection();
+			String sql="SELECT pwd FROM project_member "
+					+"WHERE id=?";
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, id);
+			ResultSet rs=ps.executeQuery();
+			rs.next();
+			String db_pwd=rs.getString(1);
+			rs.close();
+			
+			if(db_pwd.equals(pwd))
+			{
+				bCheck=true;
+				sql="DELETE FROM project_member "
+						+"WHERE id=?";
+				ps=conn.prepareStatement(sql);
+				ps.setString(1, id);
+				ps.executeUpdate();
+			}
+		}catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
+		finally
+		{
+			CreateConnection.disConnection(conn, ps);
+		}
+		return bCheck;
+	}
 }

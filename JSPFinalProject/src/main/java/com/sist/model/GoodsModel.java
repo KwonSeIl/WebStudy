@@ -117,5 +117,16 @@ public class GoodsModel {
 		CommonsModel.footerData(request);
 		return "../main/main.jsp";
 	}
+	@RequestMapping("goods/goods_detail.do")
+	public String goods_detail(HttpServletRequest request,HttpServletResponse response)
+	{
+		String no=request.getParameter("no");
+		GoodsDAO dao=new GoodsDAO();
+		GoodsVO vo=dao.goodsDetailData(Integer.parseInt(no));
+		request.setAttribute("vo", vo);
+		request.setAttribute("main_jsp", "../goods/goods_detail.jsp");
+		CommonsModel.footerData(request);
+		return "../main/main.jsp";
+	}
 }
 

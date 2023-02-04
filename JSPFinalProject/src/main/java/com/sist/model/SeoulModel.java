@@ -6,6 +6,11 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
 import com.sist.controller.Controller;
 import com.sist.controller.RequestMapping;
 import com.sist.dao.AllReplyDAO;
@@ -93,6 +98,24 @@ public class SeoulModel {
 		List<AllReplyVO> rList=adao.allReplyListData(Integer.parseInt(no), 1);
 		request.setAttribute("rList", rList);
 		request.setAttribute("count", rList.size());
+		CommonsModel.footerData(request);
+		return "../main/main.jsp";
+	}
+	@RequestMapping("seoul/seoul_weather.do")
+	public String seoul_weather(HttpServletRequest request,HttpServletResponse response)
+	{
+		String html="";
+		try
+		{
+			Document doc=Jsoup.connect("https://korean.visitseoul.net/weather").get();
+			Element elem=doc.selectFirst("section#content");
+			String data=elem.html();
+			data=data.replace("src=\"", "src=\"https://korean.visitseoul.net/weather");
+			System.out.println(data);
+			html=data;
+		}catch(Exception ex) {}
+		request.setAttribute("html", html);
+		request.setAttribute("main_jsp", "../seoul/seoul_weather.jsp");
 		CommonsModel.footerData(request);
 		return "../main/main.jsp";
 	}

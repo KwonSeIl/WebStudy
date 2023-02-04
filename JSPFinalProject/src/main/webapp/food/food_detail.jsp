@@ -6,7 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=da4c62aa0d3b6477d367816bc345b1c9&libraries=services"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
@@ -105,8 +104,19 @@ $(function(){
           <tr>
             <td colspan="2" class="text-right">
               <c:if test="${sessionScope.id!=null }">
-              <a href="#" class="btn btn-xs btn-info">좋아요(0)</a>
-              <a href="#" class="btn btn-xs btn-success">찜하기</a>
+              <c:if test="${like_count==0 }">
+              <a href="../like/like_insert.do?fno=${vo.fno }" class="btn btn-xs btn-info">좋아요(${like_total })</a>
+              </c:if>
+              <c:if test="${like_count!=0 }">
+              <span class="btn btn-xs btn-default">좋아요(${like_total })</span>
+              </c:if>
+              
+              <c:if test="${jjim_count==0 }">
+               <a href="../jjim/jjim_insert.do?fno=${vo.fno }" class="btn btn-xs btn-success">찜하기</a>
+               </c:if>
+              <c:if test="${jjim_count!=0 }">
+                <span class="btn btn-xs btn-default">찜하기</span>
+              </c:if>
               <a href="#" class="btn btn-xs btn-warning">예약하기</a>
               </c:if>
               <a href="javascript:history.back()" class="btn btn-xs btn-primary">목록</a>
@@ -232,7 +242,7 @@ $(function(){
         <table class="table">
           <tr>
             <td>
-              <c:forEach var="kvo" items="${nList }">
+              <c:forEach var="kvo" items="${nList1 }">
                 <table class="table">
                   <tr>
                     <td>

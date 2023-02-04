@@ -1,8 +1,15 @@
 package com.sist.vo;
 
 public class GoodsVO {
-	private int no,goods_discount,hit;
-	private String goods_name,goods_sub,goos_price,goods_first_price,goods_delivery,goods_poster;
+	private int no,goods_discount,hit,account;
+	private String goods_name,goods_sub,goods_price,goods_first_price,goods_delivery,goods_poster;
+	
+	public int getAccount() {
+		return account;
+	}
+	public void setAccount(int account) {
+		this.account = account;
+	}
 	public int getNo() {
 		return no;
 	}
@@ -33,11 +40,11 @@ public class GoodsVO {
 	public void setGoods_sub(String goods_sub) {
 		this.goods_sub = goods_sub;
 	}
-	public String getGoos_price() {
-		return goos_price;
+	public String getGoods_price() {
+		return goods_price;
 	}
-	public void setGoos_price(String goos_price) {
-		this.goos_price = goos_price;
+	public void setGoods_price(String goos_price) {
+		this.goods_price = goos_price;
 	}
 	public String getGoods_first_price() {
 		return goods_first_price;

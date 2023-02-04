@@ -249,4 +249,40 @@ public class GoodsDAO {
 		}
 		return total;
 	}
+	
+	public GoodsVO goodsDetailData(int no)
+	{
+		GoodsVO vo=new GoodsVO();
+		try
+		{
+			conn=CreateConnection.getConnection();
+			String sql="SELECT no,goods_poster,goods_price,goods_name,goods_delivery,goods_first_price,account,"
+					+ "goods_discount,goods_sub "
+					+ "FROM goods_all "
+					+ "WHERE no=?"; //MVC => 모든 전송(Model) => request.setAttribute()
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, no);
+			ResultSet rs=ps.executeQuery();
+			rs.next();
+			vo.setNo(rs.getInt(1));
+	        vo.setGoods_poster(rs.getString(2));
+	        vo.setGoods_price(rs.getString(3));
+	        vo.setGoods_name(rs.getString(4));
+	        vo.setGoods_delivery(rs.getString(5));
+	        vo.setGoods_first_price(rs.getString(6));
+	        vo.setAccount(rs.getInt(7));
+	        vo.setGoods_discount(rs.getInt(8));
+	        vo.setGoods_sub(rs.getString(9));
+
+			rs.close();
+		}catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
+		finally
+		{
+			CreateConnection.disConnection(conn, ps);
+		}
+		return vo;
+	}
 }

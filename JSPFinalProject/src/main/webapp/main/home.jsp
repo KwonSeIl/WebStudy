@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
 </head>
 <body>
 <div class="wrapper row3">
@@ -21,7 +22,7 @@
 </div>
 <div class="wrapper row3">
   <main class="container clear"> 
-    <!-- main body -->
+    <!-- main body --> 
     <ul class="nospace group btmspace-80">
       <li class="one_third first">
         <article class="service"><i class="icon fa fa-ambulance"></i>
@@ -45,7 +46,7 @@
         </article>
       </li>
     </ul>
-     <!-- ################################################################################################ -->
+    <!-- ################################################################################################ -->
     <h2 class="sectiontitle">믿고보는 맛집 리스트</h2>
     <!-- ################################################################################################ -->
     <div class="flexslider carousel basiccarousel btmspace-80">
@@ -94,7 +95,13 @@
     <!-- ################################################################################################ -->
     <h2 class="sectiontitle">최근 방문 맛집</h2>
     <!-- ################################################################################################ -->
-      
+      <div class="inline">
+       <c:forEach var="cvo" items="${cList }" varStatus="s">
+        <c:if test="${s.index<9 }">
+         <img src="${cvo.poster }" style="width: 100px;height: 100px">
+        </c:if>
+       </c:forEach>
+      </div>
     <!-- ################################################################################################ --> 
     <!-- / main body -->
     <div class="clear"></div>
