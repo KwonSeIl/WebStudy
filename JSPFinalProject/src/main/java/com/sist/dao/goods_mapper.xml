@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sist.dao.goods-mapper">
+  <!-- 
+       resultType  ==>  CartVO 값을 가져옴
+       public List<CartVO> cartListData(String id)
+       {
+           ...
+           ...
+           ResultSet rs=ps.executeQuery();
+           while(rs.next())
+           {
+               CartVO vo=new CartVO();
+               vo.set...
+           }
+           rs.close();
+       }
+       parameterType
+         ?에 값을 채운다 ==> setString(1,id)
+   -->
+   <!-- 
+      resultType  == return => List = selectList
+                               VO   = selectOne
+      parameterType == 매개변수
+    -->
+  <resultMap type="CartVO" id="goodsCartMap">
+    <result property="bno" column="bno"/>
+    <!-- 
+         CartVO vo=new CartVO();
+         vo.setBno(rs.getInt("bno"))
+     -->
+    <result property="gno" column="gno"/>
+    <result property="id" column="id"/>
+    <result property="account" column="account"/>
+    <result property="total_price" column="total_price"/>
+    <result property="regdate" column="regdate"/>
+    <result property="buy_ok" column="buy_ok"/>
+    <result property="gvo.goods_poster" column="goods_poster"/>
+    <!-- 
+          getGvo().setGoods_poster(rs.getString("goods_poster"));
+     -->
+    <result property="gvo.goods_name" column="goods_name"/>
+    <result property="gvo.goods_price" column="goods_price"/>
+  </resultMap>
+  <select id="goodsCartListData" resultMap="goodsCartMap" parameterType="string">
+    SELECT bno,gno,id,pgb.account,total_price,TO_CHAR(regdate,'YYYY-MM-DD') as dbday,
+    buy_ok,goods_poster,goods_name,goods_price
+    FROM project_goods_buy pgb,goods_all ga
+    WHERE pgb.gno=ga.no
+    AND id=#{id}
+  </select>
+  <!-- 
+     BNO         NOT NULL NUMBER       
+GNO                  NUMBER       
+ID                   VARCHAR2(20) 
+ACCOUNT              NUMBER       
+TOTAL_PRICE          NUMBER       
+BUY_OK               CHAR(1)  
+REGDATE DATE
+   -->
+  <insert id="goodsCartInsert" parameterType="CartVO">
+   INSERT INTO project_goods_buy VALUES(pgb_bno_seq.nextval,#{gno},#{id},#{account},#{total_price},'n',SYSDATE)
+  </insert>
+  <delete id="goodsCartDelete" parameterType="int">
+    DELETE FROM project_goods_buy
+    WHERE bno=#{bno}
+  </delete>
+</mapper>
