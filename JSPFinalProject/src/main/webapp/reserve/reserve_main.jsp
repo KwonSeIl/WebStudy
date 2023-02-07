@@ -6,31 +6,38 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<!-- <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script> -->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 <script type="text/javascript">
 $(function(){
-   $.ajax({
-      type:'POST',
-      url:'../reserve/food_list.do',
-      data:{"fd":'한식'},
-      success:function(response)
-      {
-         $('#food_list').html(response); // JSON (스프링)
-      }
-   })
-   
-   $('.foods').click(function(){
-      let fd=$(this).text();
-      $.ajax({
-         type:'POST',
-         url:'../reserve/food_list.do',
-         data:{"fd":fd},
-         success:function(response)
-         {
-            $('#food_list').html(response); // JSON (스프링)
-         }
-      })
-   })
+	$.ajax({
+		type:'POST',
+		url:'../reserve/food_list.do',
+		data:{"fd":'한식'},
+		success:function(response)
+		{
+			$('#food_list').html(response); // JSON (스프링)
+		}
+	})
+	
+	$('.foods').click(function(){
+		let fd=$(this).text();
+		$.ajax({
+			type:'POST',
+			url:'../reserve/food_list.do',
+			data:{"fd":fd},
+			success:function(response)
+			{
+				$('#food_list').html(response); // JSON (스프링)
+			}
+		})
+	})
+	$('#locBtn').click(function(){
+		$( "#dialog" ).dialog();
+	})
+	
 })
 </script>
 </head>
@@ -79,7 +86,7 @@ $(function(){
            <caption><h3>예약일 정보</h3></caption>
            <tr>
              <td>
-               <div id="select_date"></div>
+              <div id="select_date"></div>
              </td>
            </tr>
          </table>
@@ -99,6 +106,25 @@ $(function(){
              <th width="30%">예약일</th>
              <td width=70%><span id="r_day"></span></td>
            </tr>
+           <tr>
+             <th width="30%">예약시간</th>
+             <td width=70%><span id="r_time"></span></td>
+           </tr>
+           <tr>
+             <th width="30%">예약인원</th>
+             <td width=70%><span id="r_inwon"></span></td>
+           </tr>
+           <tr>
+             <td colspan="2" class="text-center ok_btn" style="display:none">
+               <form method="post" action="../reserve/reserve_ok.do">
+                 <input type=hidden name="fno" id="fno">
+                 <input type=hidden name="reserveday" id="reserveday">
+                 <input type=hidden name="reservetime" id="reservetime">
+                 <input type=hidden name="reserveinwon" id="reserveinwon">
+                 <input type=submit value="예약하기" class="btn btn-lg btn-primary">
+               </form>
+             </td>
+           </tr>
          </table>
        </td>
      </tr>
@@ -106,16 +132,28 @@ $(function(){
        <td class="default" width="35%" height="200">
          <table class="table">
            <caption><h3>시간 정보</h3></caption>
+           <tr>
+             <td>
+               <div id="select_time"></div>
+             </td>
+           </tr>
          </table>
        </td>
        <td class="warning" width="35%" height="200">
          <table class="table">
            <caption><h3>인원 정보</h3></caption>
+           <tr>
+             <td>
+               <div id="select_inwon"></div>
+             </td>
+           </tr>
          </table>
        </td>
      </tr>
    </table>
+   <!-- <div id="dialog" title="Basic dialog">
+    <p>This is the default dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the &apos;x&apos; icon.</p>
+   </div> -->
   </main>
-  </div>
 </body>
 </html>

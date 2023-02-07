@@ -71,6 +71,7 @@ public class NewsManager{
         		NewsVO n=new NewsVO();
         		n.setTitle((String)obj.get("title"));
         		n.setContent(desc);
+        		n.setLink((String)obj.get("link"));
         		list.add(n);
         	}
         			
@@ -133,5 +134,5 @@ public class NewsManager{
             throw new RuntimeException("API 응답을 읽는데 실패했습니다.", e);
         }
     }
-}
 
+}

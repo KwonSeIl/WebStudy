@@ -32,7 +32,7 @@
             <ul>
               <li><a href="#">좋아요 수정</a></li>
               <li><a href="../mypage/jjim_list.do">찜 수정</a></li>
-              <li><a href="#">예약 수정</a></li>
+              <li><a href="../mypage/reserve.do">예약 수정</a></li>
               <li><a href="#">장바구니 수정</a></li>
               <li><a href="#">구매 수정</a></li>
             </ul>

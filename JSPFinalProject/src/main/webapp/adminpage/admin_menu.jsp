@@ -25,7 +25,7 @@
           </li>
           <li>서비스 관리
             <ul>
-              <li><a href="#">예약 관리</a></li>
+              <li><a href="../adminpage/admin_reserve.do">예약 관리</a></li>
               <li><a href="#">구매 관리</a></li>
             </ul>
           </li>
